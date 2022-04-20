@@ -43,9 +43,11 @@
     top: 0;
     display: flex;
     width: 4vw;
+    min-width: 50px;
     height: 100vh;
     background-color: #E84855;
     flex-direction: column;
+    z-index: 10000;
   }
 
   ul {
@@ -75,9 +77,32 @@
     color: whitesmoke;
     text-decoration: underline;
     font-size: larger;
-    background-color: #3185fc;
-    border-radius: 30px;
     text-align: center;
-    height: 20px;
   }
+
+  @media only screen and (max-width: 850px) {
+  main {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    height: 50px;
+    min-width: 100vw;
+    margin-bottom: 2em;
+  }
+  li {
+    transform: none;
+  }
+
+  ul {
+    width: 100%;
+    flex-direction: row;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+    border: 1px solid ;
+  }
+}
 </style>

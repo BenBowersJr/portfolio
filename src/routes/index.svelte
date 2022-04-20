@@ -27,6 +27,7 @@
 
   small {
     font-style: italic;
+    margin-bottom: 2em;
   }
 
   :global(h1) {
@@ -55,5 +56,15 @@
     width: 750px;
     font-size: 1.3em;
     font-family: 'Roboto';
+  }
+  @media only screen and (max-width: 850px) {
+    p {
+      width: 90vw;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
+
   }
 </style>
