@@ -1,8 +1,8 @@
 <script>
-  import {fade} from 'svelte/transition'
+  import {fade, fly} from 'svelte/transition'
 </script>
 
-<main in:fade={{ duration: 1000 }}>
+<main in:fade={{ duration: 500 }}>
   <h1>
     Benjamin M. Bowers Jr.
   </h1>

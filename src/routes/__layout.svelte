@@ -39,6 +39,8 @@
     height: 100%;
   }
   nav {
+    position: sticky;
+    top: 0;
     display: flex;
     width: 4vw;
     height: 100vh;
