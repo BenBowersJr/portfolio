@@ -44,7 +44,7 @@
   }
 
   :global(h1) {
-    font-family: 'Bangers', cursive;
+    font-family: 'Rubik Glitch', cursive;
     font-size: 3em;
     font-style: italic;
     justify-self: start;

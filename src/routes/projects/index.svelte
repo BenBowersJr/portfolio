@@ -4,6 +4,7 @@
   import hiro from '$lib/assets/hiro.png'
   import simon2 from '$lib/assets/simon2.png'
   import sins from '$lib/assets/sins.png'
+  import portfolio from '$lib/assets/oldportfolio.png'
 </script>
 
 <svelte:head>
@@ -65,6 +66,16 @@
 
     <p class="description"> Just for some context for the middle one, My server that is just for good friends is jokingly called "The Casting Couch." So I made the bots persona is "The Interviewer" to fit in for a good laugh. I decided to make him when a popular discord bot called Rhythm got shutdown. I wanted to see if I could make my own music bot in Python with <a href="https://github.com/Rapptz/discord.py">Discord.py</a> and <a href="https://github.com/ytdl-org/youtube-dl/blob/master/README.md#readme">Youtube-dl</a>. That was the beginning of me creating 3 seperate bots for my friends servers that did all kinds of things like role assignment, custom messages/channels, and auto moderation. These are private repos and just for the servers they are in.</p>
   </div>
+  
+  <div class="project-container">
+    <h2>Old Portfolio</h2>
+
+    <a href="https://benbowersjr.github.io/">
+      <img src="{portfolio}" class="image" alt="My old Portfolio">
+    </a>
+
+    <p class="description">This is my old portfolio that I made for a project in school, its still hosted if you want to see it. I wanted to update it and decided to start from scratch with Sveltekit because I like it so much. </p>
+
 </main>
 
 <style>
@@ -154,6 +165,9 @@
     justify-content: space-evenly;
   }
 
+  #portfolio {
+    width: 500px;
+  }
 
   /* Copied from w3 */
   /* .container {
