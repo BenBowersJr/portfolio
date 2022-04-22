@@ -2,6 +2,10 @@
   import {fade, fly} from 'svelte/transition'
 </script>
 
+<svelte:head>
+  <title>Benjamin Bowers</title>
+</svelte:head>
+
 <main in:fade={{ duration: 500 }}>
   <h1>
     Benjamin M. Bowers Jr.

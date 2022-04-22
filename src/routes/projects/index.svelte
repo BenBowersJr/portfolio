@@ -1,11 +1,14 @@
 <script>
   import {fade} from 'svelte/transition'
-  import { goto } from '$app/navigation';
   import platformer from '$lib/assets/platformer.png'
   import hiro from '$lib/assets/hiro.png'
   import simon2 from '$lib/assets/simon2.png'
   import sins from '$lib/assets/sins.png'
 </script>
+
+<svelte:head>
+  <title>My Projects</title>
+</svelte:head>
 
 <main in:fade={{ duration: 1000 }}>
   <h1>Projects</h1>
@@ -26,29 +29,41 @@
 
     <a href="https://github.com/jrremlinger/SophomoreProject">
       <div class="image"></div>
+      <p></p>
     </a>
 
-    <p class="description">This was for one of our Software Project classes. me and 3 other classmates are given a project for 6 weeks to work on. This time it was a mock-up retirement home app. This app would take care of regular hostipal duties, and have multiple types of users like Doctors, Nurses, Caretakers, and Patients.</p>
+    <p class="description">This was for one of our Software Project classes. me and 3 other classmates are given a project for 6 weeks to work on. This time it was a mock-up retirement home app in PHP. This app would take care of regular hostipal duties and have multiple types of users like Doctors, Nurses, Caretakers, and Patients. all interacting with each other.</p>
   </div>
 
   <div class="project-container">
     <h2>Discord Bots</h2>
 
     <div class="discord-icons">
-      <img src="{hiro}" alt="hiro bot" class="small-image">
-
-      <div class="container">
-        <img src="{sins}" alt="mr sins" class="small-image">
-        <div class="overlay">
-          <div class="text">The server name is "The Casting Couch"</div>
-          <div class="text"></div>
-        </div>
+      <div class="bot">
+        <img src="{hiro}" alt="hiro bot" class="small-image">
+        <p>Hiro Bot - ~200 Users</p>
       </div>
 
-      <img src="{simon2}" alt="simon bot" class="small-image">
+      <div class="bot">
+        <img src="{sins}" alt="mr sins" class="small-image">
+        <p>The Interviewer - ~75 Users</p>
+      </div>
+
+
+      <!-- <div class="container">
+        <div class="overlay">
+          <div class="text">For Context, The server name is "The Casting Couch"</div>
+          <div class="text"></div>
+        </div>
+      </div> -->
+
+      <div class="bot">
+        <img src="{simon2}" alt="simon bot" class="small-image">
+        <p>Simon Jeffery - ~200 Users</p>
+      </div>
     </div>
 
-    <p class="description">Me and my friends use discord practically everyday while we play games together. When a popular discord bot called Rythum was shutdown by youtube. I wanted to see if I could make my own music bot in Python with <a href="https://github.com/Rapptz/discord.py">Discord.py</a> and <a href="https://github.com/ytdl-org/youtube-dl/blob/master/README.md#readme">Youtube-dl</a>. That was the beginning of me creating 3 seperate bots for my friends servers.      </p>
+    <p class="description">Me and my friends use discord practically everyday while we play games together. When a popular discord bot called Rhythm was shutdown. I wanted to see if I could make my own music bot in Python with <a href="https://github.com/Rapptz/discord.py">Discord.py</a> and <a href="https://github.com/ytdl-org/youtube-dl/blob/master/README.md#readme">Youtube-dl</a>. That was the beginning of me creating 3 seperate bots for my friends servers that did all kinds of things like role assignment, custom messages/channels, and auto moderation to name a few.</p>
   </div>
 </main>
 
@@ -81,7 +96,17 @@
     color: aliceblue;
   }
 
-  
+  .bot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bot p {
+    margin-top: -30px;
+    padding-bottom: 30px;
+    font-weight: bold;
+  }
 
 
   .project-container {
@@ -119,6 +144,7 @@
     margin: 1em;
     margin-bottom: 3em;
     background-color: lightgray;
+    border: 2px solid gray;
   }
 
   .discord-icons {
@@ -128,7 +154,7 @@
 
 
   /* Copied from w3 */
-  .container {
+  /* .container {
   position: relative;
 }
 
@@ -164,7 +190,7 @@
 
 span {
   display: inline-block;
-}
+} */
 
 @media only screen and (max-width: 850px) {
   .discord-icons {
