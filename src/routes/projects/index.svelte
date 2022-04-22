@@ -165,10 +165,6 @@
     justify-content: space-evenly;
   }
 
-  #portfolio {
-    width: 500px;
-  }
-
   /* Copied from w3 */
   /* .container {
   position: relative;
