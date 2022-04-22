@@ -16,6 +16,10 @@
     <h2>About Me</h2>
     <p class='aboutmetxt'>I got my introduction to software in my highschool robotics class where I quickly learned that I love to work with computers. Every year I would retake Honors Robotics to work with the schools robots, 3D printers, and Laser Engraver, really anything I could get my hands on that the school had at the time.</p>
     <p>Now im graduating from Thaddeus Stevens College of Technology with a Associates of Computer Science. Excited to start my career and see what I can accomplish and learn from whats to come.</p>
+
+
+    <h2>Goals</h2>
+    <p>Currently dont have a specfic job goal, its all exciting and interesting to me and im looking for what opportunities I can find. Whats important is a place where I can grow a learn, make enough to sustain myself, and hopefully go back to school to further my degree.</p>
   </div>
 </main>
 
@@ -31,7 +35,12 @@
 
   small {
     font-style: italic;
-    margin-bottom: 2em;
+  }
+
+  h2 {
+    margin-top: 2em;
+    margin-bottom: 10px;
+    text-decoration: underline;
   }
 
   :global(h1) {

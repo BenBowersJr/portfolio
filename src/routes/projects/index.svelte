@@ -21,7 +21,7 @@
       <img class="image" src="{platformer}" alt="">
     </a>
 
-    <p class="description">This was a Project from school where both my classmate Joshua Remlinger and I created a game. Were both very proud with how it came out. We came up with a clever map creation system and struggled with the physics and collision detection for awhile before we figured it out.</p>
+    <p class="description">This was a Project from school where both my classmate Joshua Remlinger and I created a game. Were both very proud with how it came out. We came up with a clever map creation system and struggled with the physics and collision detection for awhile before we figured it out. We have it hosted on Github Pages, click on the image to play with WASD and Escape.</p>
   </div>
 
   <div class="project-container">
@@ -32,7 +32,7 @@
       <p></p>
     </a>
 
-    <p class="description">This was for one of our Software Project classes. me and 3 other classmates are given a project for 6 weeks to work on. This time it was a mock-up retirement home app in PHP. This app would take care of regular hostipal duties and have multiple types of users like Doctors, Nurses, Caretakers, and Patients. all interacting with each other.</p>
+    <p class="description">This was for one of our Software Project classes. Me and 3 other classmates are given a project for 6 weeks to work on at the end of each semester. This time it was a mock-up retirement home app in PHP. This app would take care of regular hostipal duties and have multiple types of users like Doctors, Nurses, Caretakers, and Patients. all interacting with each other. The repo is public on Github but it is not hosted.</p>
   </div>
 
   <div class="project-container">
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <p class="description">Me and my friends use discord practically everyday while we play games together. When a popular discord bot called Rhythm was shutdown. I wanted to see if I could make my own music bot in Python with <a href="https://github.com/Rapptz/discord.py">Discord.py</a> and <a href="https://github.com/ytdl-org/youtube-dl/blob/master/README.md#readme">Youtube-dl</a>. That was the beginning of me creating 3 seperate bots for my friends servers that did all kinds of things like role assignment, custom messages/channels, and auto moderation to name a few.</p>
+    <p class="description"> Just for some context for the middle one, My server that is just for good friends is jokingly called "The Casting Couch." So I made the bots persona is "The Interviewer" to fit in for a good laugh. I decided to make him when a popular discord bot called Rhythm got shutdown. I wanted to see if I could make my own music bot in Python with <a href="https://github.com/Rapptz/discord.py">Discord.py</a> and <a href="https://github.com/ytdl-org/youtube-dl/blob/master/README.md#readme">Youtube-dl</a>. That was the beginning of me creating 3 seperate bots for my friends servers that did all kinds of things like role assignment, custom messages/channels, and auto moderation. These are private repos and just for the servers they are in.</p>
   </div>
 </main>
 
@@ -89,6 +89,8 @@
     font-family: 'Bangers';
     /* margin-bottom: 2em; */
     font-size: 3em;
+    text-decoration: underline;
+    margin-bottom: .7em;
     
   }
 
