@@ -8,18 +8,19 @@
 
 <main in:fade={{ duration: 500 }}>
   <h1>
-    Benjamin M. Bowers Jr.
+    Benjamin Bowers Jr.
   </h1>
-  <small>Jr. Software Engineer</small>
+  <small>Software Engineer</small>
 
   <div class="aboutme">
     <h2>About Me</h2>
-    <p class='aboutmetxt'>I got my introduction to software in my highschool robotics class where I quickly learned that I love to work with computers. Every year I would retake Honors Robotics to work with the schools robots, 3D printers, and Laser Engraver, really anything I could get my hands on that the school had at the time.</p>
-    <p>Now im graduating from Thaddeus Stevens College of Technology with a Associates of Computer Science. Excited to start my career and see what I can accomplish and learn from whats to come.</p>
+    <p class='aboutmetxt'>My first exposure to software was in my high school robotics class. We learned how to link the programming languages we learned, to the robots we created, and how to make them do complex tasks. After quickly getting ahead and finishing all the robot challenges and assignments I was given, I was free to work on anything I wanted. Every year I retake the class to work with the school's robots, 3D printers, Laser Engraver, and anything I could get my hands on that the school had at the time. Most of my projects are still being used there today. It motivated me to build my computer and work on my own projects in my free time, and ultimately pursue a degree in higher education in the subject.</p>
+
+    <p>I am graduating from Thaddeus Stevens College of Technology with an Associate of Computer Science in spring 2022. I look forward to starting a career in software engineering and continuing my growth in the field.</p>
 
 
     <h2>Goals</h2>
-    <p>Currently dont have a specfic job goal, its all exciting and interesting to me and im looking for what opportunities I can find. Whats important is a place where I can grow a learn, make enough to sustain myself, and hopefully go back to school to further my degree.</p>
+    <p>My current goal is to start my career in software engineering in a job with a culture that supports and fosters an environment of continuous learning. I hope to continue to refine my ability to work as a full-stack engineer, so I am flexible on what I work on early in my career as I value all of the experiences along the way. I believe work experience will help me develop a greater vision for my career goals beyond this.</p>
   </div>
 </main>
 

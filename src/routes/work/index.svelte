@@ -20,7 +20,7 @@
       <img src="https://www.refrigeratedfrozenfood.com/ext/resources/RFF/2020-Web-Pics/Tyson/2021/Tyson-Logo.jpg?1630703215" alt="">
   
       <div class="content">
-        <p>Here I was hired to expand upon Tysons Microsoft Powerapps platform. Mainly turning the internal paper forms that maintenance uses online. But there were multiple problems that I encountered that encumbered my performance. The only solutions required paying more money to Microsoft. I suggested that I make a website for them that would be much faster, do more things, and cost much less money. They agrred and I learned so much from this internship because of that. For the first time, I worked with SvelteKit and <abbr title="FaunaDB Query Language">FQL</abbr> which were used for the front-end and back-end of the app. <abbr title="FaunaDB Query Language">FQL</abbr> was admittedly not my first choice. I couldn't connect to a SQL Database because the firewall blocked all my connections. My solution was to entirely learn a new query language FaunaDB. It was rough at first, but as I got more used to it, I learned just how fast and efficient FQL could be and was happy to work with it. And I honestly couldnt couldnt be more pleased with Sveltekit. It was my first introduction into React/Vue/Angular type frameworks. It was very easy to learn and made alot of fun and easy to do.  </p>
+        <p>Here I was hired to expand upon Tysons Microsoft Powerapps platform. Mainly turning the internal paper forms that maintenance uses online. But there were multiple problems that I encountered that encumbered my performance. The only solutions required paying more money to Microsoft. I suggested that I make a website for them that would be much faster, do more things, and cost much less money. They agreed and I learned so much from this internship because of that. For the first time, I worked with SvelteKit and <abbr title="FaunaDB Query Language">FQL</abbr> which were used for the front-end and back-end of the app. <abbr title="FaunaDB Query Language">FQL</abbr> was admittedly not my first choice. I couldn't connect to a SQL Database because the firewall blocked all my connections. My solution was to entirely learn a new query language FaunaDB. It was rough at first, but as I got more used to it, I learned just how fast and efficient FQL could be and was happy to work with it. And I honestly couldn't be more pleased with Sveltekit. It was my first introduction to React/Vue/Angular type frameworks. It was very easy to learn and made development a lot of fun and easy to do.</p>
       </div>
     </div>
   
@@ -39,7 +39,6 @@
               <li>Java</li>
               <li>Git</li>
               <li>Svelte</li>
-              <li>Python</li>
             </ul>
 
           <h4>Proficient In</h4>
