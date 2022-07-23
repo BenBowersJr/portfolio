@@ -7,7 +7,8 @@
 </main>
 
 <style>
-
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400&display=swap');
+  
   @font-face {
     font-family: 'Barcelony';
     src: url('fonts/Barcelony.ttf') format('truetype');
@@ -26,7 +27,7 @@
     width: 100vw;
     background: linear-gradient(-45deg, #7a0045, #16007a, #160024, #2b0344, #16007a, #7a0045);
     background-size: 400% 400%;
-    animation: gradient 30s ease infinite;
+    animation: gradient 20s ease infinite;
     color: white;
   }
 

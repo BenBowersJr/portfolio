@@ -5,7 +5,11 @@
   // @ts-ignore
   let activePage = 'Home'
 
+
+  
+  // @ts-ignore
   function navigate(where) {
+    console.log(where)
     activePage = ''
     setTimeout(() => {
       activePage = where

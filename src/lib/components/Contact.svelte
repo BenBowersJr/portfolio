@@ -20,4 +20,18 @@
     justify-content: center;
     height: 100%;
   }
+
+  button {
+    position: relative;
+    top: 30px;
+    left: -20px;
+    padding: 10px 25px;
+    background: none;
+    animation: gradient 15s ease infinite;
+    border: #ffffff 2px solid;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    width: 150px;
+  }
 </style>

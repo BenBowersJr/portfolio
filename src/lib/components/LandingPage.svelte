@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-
+  import { browser, dev, prerendering } from '$app/env';
   const dispatch = createEventDispatcher();
 
   function work() {
@@ -13,11 +13,64 @@
       text: 'text'
     })
   }
+
+  
+
+  let text
+  let txtList = ['Guitar Player', 'Video Game Enthusiast', 'Skateboarder', 'Web Developer', 'Professional Idiot']
+  
+  var i = 0, speed = 75, currentText = 0;
+  async function typeWriter() {
+    if (text == null) {
+      return
+    }
+    if (i < txtList[currentText].length) {
+      text.innerHTML += txtList[currentText].charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+
+      if (i == txtList[currentText].length) {
+        // await 1 sec promise
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        let test = await deleteText()
+        if (test == undefined) {
+          // start next string of Text
+          setTimeout(function() {
+            text.innerHTML = '';
+            i = 0;
+            currentText = (currentText + 1) % txtList.length;
+            typeWriter();
+          }, 1750);
+        }
+      }
+    }
+  }
+
+  // starts the typewriter
+  if (browser) {
+    setTimeout(() => {
+      typeWriter()
+    }, 10);
+  }
+
+  async function deleteText() {
+    //animate deleting text
+    if (text.innerHTML.length != 0) {
+      setTimeout(function() {
+        let len = text.innerHTML.length;
+        text.innerHTML = text.innerHTML.substring(0, len - 1);
+        deleteText()
+      }, speed);
+    } else {
+      return true
+    }
+  }
+
 </script>
 
 <main>
-  <h1>Benjamin Bowers</h1>
-  <small>Software Engineer & Video Game Enthusiast</small>
+  <h1>Benjamin Bowers Jr.</h1>
+  <small>Passionate <em>Software Engineer</em> & <b bind:this="{text}" class="text"></b> <br> Looking to start my career and further my degree</small>
 
   <div class="buttons">
     <button on:click="{work}">Projects / Work</button>
@@ -67,8 +120,10 @@
   }
 
   small {
-    font-family: Arial, Helvetica, sans-serif;
     color:  white;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Roboto Serif';
   }
 
   button {
@@ -78,11 +133,17 @@
     padding: 10px 25px;
     background: none;
     animation: gradient 15s ease infinite;
-    border: #000 2px solid;
+    border: #ffffff 2px solid;
     border-radius: 4px;
     color: white;
     cursor: pointer;
     width: 150px;
+  }
+
+  em {
+    text-decoration: underline;
+    font-weight: bold;
+    color: rgb(206, 4, 206);
   }
 
   .buttons {
@@ -90,6 +151,10 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+  }
+
+  .text::after {
+    content: "|";
   }
 
 </style>
