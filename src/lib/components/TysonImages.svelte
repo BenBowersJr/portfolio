@@ -13,7 +13,7 @@
 
 
   let activeImg = 0
-  let imgs = [mdl, mwp, fridge, gif]
+  let imgs = [mdl, mwp, fridge]
 
   function next() {
     let old = activeImg
