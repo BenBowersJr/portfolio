@@ -24,7 +24,7 @@
     <div transition:blur={{ duration: 1000}} class="landingpage">
       <LandingPage 
         on:work={()=>navigate('Work')} 
-        on:contact={()=>navigate('Contact')}>
+        on:contact={()=>navigate('Work')}>
       </LandingPage>
     </div>
   {/if}
