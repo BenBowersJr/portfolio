@@ -2,7 +2,6 @@
   import { createEventDispatcher } from 'svelte';
   import { browser, dev, prerendering } from '$app/env';
   import { draw } from "svelte/transition";
-  import Name from "$lib/components/name.svelte";
   const dispatch = createEventDispatcher();
 
   function work() {
