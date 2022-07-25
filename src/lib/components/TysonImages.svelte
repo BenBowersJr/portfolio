@@ -2,7 +2,6 @@
   import mdl from '$lib/assets/mdl.png'
   import mwp from '$lib/assets/MWP.png'
   import fridge from '$lib/assets/refridge.png'
-  import gif from '$lib/assets/tyson-mms.gif'
   import vid from '$lib/assets/tysonmms.mp4'
   import { fade, fly } from 'svelte/transition'
 
