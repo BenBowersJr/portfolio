@@ -1,6 +1,8 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import { browser, dev, prerendering } from '$app/env';
+  import { draw } from "svelte/transition";
+  import Name from "$lib/components/name.svelte";
   const dispatch = createEventDispatcher();
 
   function work() {
@@ -16,6 +18,9 @@
 
   
 
+  /**
+  * @type {HTMLElement | null}
+  */
   let text
   let txtList = ['Guitar Player', 'Video Game Enthusiast', 'Skateboarder', 'Web Developer', 'Professional Idiot']
   
@@ -69,6 +74,8 @@
 </script>
 
 <main>
+  <!-- <Name></Name> -->
+
   <h1>Benjamin Bowers Jr.</h1>
   <small>Passionate <em>Software Engineer</em> & <b bind:this="{text}" class="text"></b> <br> Looking to start my career and further my degree</small>
 
@@ -124,6 +131,10 @@
     margin-top: 10px;
     text-align: center;
     font-family: 'Roboto Serif';
+  }
+
+  svg text {
+    font-family: 'Bacelony';
   }
 
   button {

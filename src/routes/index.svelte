@@ -1,6 +1,7 @@
 <script>
   import LandingPage from "$lib/components/LandingPage.svelte";
   import Work from "$lib/components/Work.svelte";
+  import Contact from "$lib/components/Contact.svelte";
   import { fade, fly, blur } from 'svelte/transition';
   // @ts-ignore
   let activePage = 'Home'
@@ -36,7 +37,7 @@
 
   {#if activePage == 'Contact'}
     <div transition:blur={{ duration: 1000}} class="contact">
-      <Work on:back={()=>navigate('Home')}></Work>
+      <Contact on:back={()=>navigate('Home')}></Contact>
     </div>
   {/if}
 </main>

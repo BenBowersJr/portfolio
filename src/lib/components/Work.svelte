@@ -49,7 +49,7 @@
       <h1>Platformer Game</h1>
 
       <iframe src="https://benbowersjr.github.io/platformer-game/" title="game project"></iframe>
-      <p id="platformer">This was one of my projects at Thaddeus Stevens College of Technology that me and my classmate Joshua Remlinger made using p5.js. You can play it now! Use wasd to move and esc to pause. Code for the project can be found <a href="https://github.com/BenBowersJr/platformer-game" target="_blank">here.</a></p>
+      <p id="platformer">This was one of my projects at Thaddeus Stevens College of Technology that me and my classmate Joshua Remlinger made using p5.js. You can play it now! Use wasd to move and esc to pause, not mobile compatable. Code for the project can be found <a href="https://github.com/BenBowersJr/platformer-game" target="_blank">here.</a></p>
     </div>
   {/if}
 

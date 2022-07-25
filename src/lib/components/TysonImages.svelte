@@ -3,7 +3,15 @@
   import mwp from '$lib/assets/MWP.png'
   import fridge from '$lib/assets/refridge.png'
   import gif from '$lib/assets/tyson-mms.gif'
+  import vid from '$lib/assets/tysonmms.mp4'
   import { fade, fly } from 'svelte/transition'
+
+
+  /*
+  ! SWITCH TO VIDEO
+  */
+
+
 
   let activeImg = 0
   let imgs = [mdl, mwp, fridge, gif]
@@ -33,19 +41,27 @@
 </script>
 
 <main>
+  
+  
+  {#if vid}
+  <video src="{vid}" width="500" autoplay loop>Video not Loaded</video>
+  {:else}
   <button on:click="{back}">Back</button>
-
-  {#if activeImg == 0}
-    <img in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{gif}" alt="">
-  {:else if activeImg == 1}
-    <img in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{mwp}" alt="">
-  {:else if activeImg == 2}
-    <img in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{fridge}" alt="">
-  {:else if activeImg == 3}
-    <img in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{mdl}" alt="">
+    {#if activeImg == 0}
+      <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{gif}" alt="">
+    {:else if activeImg == 1}
+      <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{mwp}" alt="">
+    {:else if activeImg == 2}
+      <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{fridge}" alt="">
+    {:else if activeImg == 3}
+      <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{mdl}" alt="">
+    {/if}
+    <button id="buttonR" on:click="{next}">Next</button>
   {/if}
 
-  <button id="buttonR" on:click="{next}">Next</button>
+
+
+
 </main>
 
 <style>
@@ -57,7 +73,7 @@
     height: 100%;
   }
 
-  img {
+  img, video {
     width: 100%;
     max-width: 1200px;
     margin: 0 20px;
