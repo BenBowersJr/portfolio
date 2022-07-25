@@ -47,13 +47,11 @@
   {:else}
   <button on:click="{back}">Back</button>
     {#if activeImg == 0}
-      <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{gif}" alt="">
+      <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{mdl}" alt="">
     {:else if activeImg == 1}
       <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{mwp}" alt="">
     {:else if activeImg == 2}
       <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{fridge}" alt="">
-    {:else if activeImg == 3}
-      <img rel="preload" in:fly|local="{{ duration: 500, x: -250 }}" out:fly|local="{{ duration: 500, x: 250 }}" src="{mdl}" alt="">
     {/if}
     <button id="buttonR" on:click="{next}">Next</button>
   {/if}
