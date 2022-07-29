@@ -422,6 +422,8 @@
     margin: 2em auto;
     font-family: 'Roboto';
     margin-bottom: 100px;
+    font-family: 'Roboto Serif';
+    font-size: 14px;
   }
 
   form {
