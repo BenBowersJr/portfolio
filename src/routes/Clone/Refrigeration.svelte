@@ -87,13 +87,15 @@
     padding-bottom: 5em;
     background-color: whitesmoke;
     color: black;
+    font-family: 'Roboto Serif';
+    font-size: 14px;
   }
 
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Roboto';
+    font-family: 'Roboto Serif';
     font-size: 15px;
   }
 
