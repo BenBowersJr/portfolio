@@ -4,7 +4,6 @@
 
   import {onMount} from 'svelte'
   // @ts-ignore
-  import svgImage from '$lib/assets/edit.svg'
   import { fade, blur, fly, slide, scale } from "svelte/transition";
   export let MDLs
   // onMount(async () => {
