@@ -1,6 +1,6 @@
 <script>
   import { fade, blur, fly, slide, scale } from "svelte/transition";
-  import MWPHazards from '$lib/components/MWPHazards.svelte'
+  import MWPHazards from '$lib/components/TysonCopy/MWP/MWPHazards.svelte'
 
   let risklvl = ''
   let pagetwo = false

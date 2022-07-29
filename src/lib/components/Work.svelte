@@ -42,14 +42,27 @@
         <TysonImages></TysonImages>
       </div>
 
-      <p>This website was my Internship and Full-Time project at Tyson Foods. I Developed this as a better replacement to their Microsoft PowerApps application. At two plants, The maintenance team rely on this site every day to fill out their daily forms and yearly training. Handles complex interactions between the different management and team members. Made mostly with SvelteKit and FaunaDB.</p>
+      <p>This website was my Internship and Full-Time project at Tyson Foods. I Developed this as a better replacement to their Microsoft PowerApps application. At two plants, The maintenance team rely on this site every day to fill out their daily forms and yearly training. Handles complex interactions between the different management and team members. Made mostly with SvelteKit and FaunaDB. Some clones of the most used Forms are shown below.</p>
+      
+      <!-- make a flex container  -->
+      <p id="center">
+        <a target="_blank" href="Clone/DL">DailyLog</a>
+        <a target="_blank" href="Clone/HotWorks">HotWorks</a>
+        <a target="_blank" href="Clone/Refrigeration">Refrigeration</a>
+        <a target="_blank" href="Clone/MWP">MWP</a>
+      </p>
+
+
+
     </div>
   {:else if currentProject == 1}
     <div class="project" transition:blur="{{ duration: 1000 }}">
       <h1>Platformer Game</h1>
 
       <iframe src="https://benbowersjr.github.io/platformer-game/" title="game project"></iframe>
-      <p id="platformer">This was one of my projects at Thaddeus Stevens College of Technology that me and my classmate Joshua Remlinger made using p5.js. You can play it now! Use wasd to move and esc to pause, not mobile compatable. Code for the project can be found <a href="https://github.com/BenBowersJr/platformer-game" target="_blank">here.</a></p>
+      <p id="platformer">This was one of my projects at Thaddeus Stevens College of Technology that me and my classmate Joshua Remlinger made using p5.js. You can play it now! Use wasd to move and esc to pause, not mobile compatable. Code for the project can be found <a href="https://github.com/BenBowersJr/platformer-game" target="_blank">here.</a>
+      
+      </p>
     </div>
   {/if}
 
@@ -59,6 +72,10 @@
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400&display=swap');
+
+  #center {
+    text-align: center;
+  }
 
   main {
     display: flex;

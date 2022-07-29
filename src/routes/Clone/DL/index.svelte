@@ -8,12 +8,102 @@
 
 <script>
   // @ts-ignore
-  import DailyLogForm from '$lib/components/TysonCopy/DailyLogForm.svelte'
-  import DailyLogViewer from '$lib/components/TysonCopy/DailyLogViewer.svelte'
+  import DailyLogForm from '$lib/components/TysonCopy/DailyLog/DailyLogForm.svelte'
+  import DailyLogViewer from '$lib/components/TysonCopy/DailyLog/DailyLogViewer.svelte'
   import {onMount} from 'svelte'
   import { fade, blur, fly, slide, scale } from "svelte/transition";
 
   export let session
+  let MDLs = [
+    {
+      "ts": 1658864099000000,
+      "data": {
+        "department": "RKP",
+        "equipName": "PICKER #3",
+        "team": "Team-A",
+        "downtimeMin": 0,
+        "downtime": false,
+        "ordered": false,
+        "causingDept": "Maintenance",
+        "WONum": 1020546253,
+        "user": "Benjamin Bowers",
+        "PONum": "",
+        "Date": "2020-01-01",
+        "description": "replace 1/2\" cap",
+        "status": "Complete",
+        "plant": "New Holland",
+        "whys": {}
+      }
+    },
+    {
+      "ts": 1658864099000000,
+      "data": {
+        "department": "RKP",
+        "equipName": "PICKER #3",
+        "team": "Team-A",
+        "downtimeMin": 0,
+        "downtime": false,
+        "ordered": false,
+        "causingDept": "Maintenance",
+        "WONum": 1020546253,
+        "PONum": "",
+        "Date": "2020-01-01",
+        "description": "replace 1/2\" cap",
+        "user": "Benjamin Bowers",
+        "status": "Complete",
+        "plant": "New Holland",
+        "whys": {}
+      }
+    },
+    {
+      "ts": 1658864099000000,
+      "data": {
+        "department": "RKP",
+        "equipName": "PICKER #3",
+        "team": "Team-A",
+        "downtimeMin": 0,
+        "downtime": false,
+        "ordered": false,
+        "causingDept": "Maintenance",
+        "WONum": 1020546253,
+        "PONum": "",
+        "user": "Benjamin Bowers",
+        "description": "replace 1/2\" cap",
+        "status": "Complete",
+        "Date": "2020-01-01",
+        "plant": "New Holland",
+        "whys": {}
+      }
+    },
+    {
+      "ts": 1658864099000000,
+      "data": {
+        "department": "RKP",
+        "equipName": "PICKER #3",
+        "team": "Team-A",
+        "downtimeMin": 0,
+        "downtime": false,
+        "ordered": false,
+        "Date": "2020-01-01",
+        "causingDept": "Maintenance",
+        "WONum": 1020546253,
+        "PONum": "",
+        "description": "replace 1/2\" cap",
+        "user": "Benjamin Bowers",
+        "status": "Complete",
+        "plant": "New Holland",
+        "whys": {}
+      }
+    },
+  ]
+  function submit(event) {
+    alert('NOT FUNCTIONAL')
+  }
+
+  //hello world function
+  function helloWorld() {
+    console.log("hello world")
+  }
 
 
 </script>
@@ -25,14 +115,14 @@
     <header>
       <h2>MDL Form</h2>
     </header>
-    <DailyLogForm></DailyLogForm>
+    <DailyLogForm on:submit={submit}></DailyLogForm>
   </div>
 
   <div class="viewer">
     <header>
       <h2>MDL Viewer</h2>
     </header>
-    <DailyLogViewer></DailyLogViewer>
+    <DailyLogViewer bind:MDLs></DailyLogViewer>
   </div>
 </div>
 

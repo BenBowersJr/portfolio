@@ -6,11 +6,12 @@
   const dispatch = createEventDispatcher()
   let ordered = false, downtime = false
   let department, equipName, team, downtimeMin=0, causingDept, WONum="", date, description, status, PONum=""
-  let why1, why2, why3, why4, why5, whymsg, userResponsible, correctiveAction
+  let why1, why2, why3, why4, why5, whymsg
   // @ts-ignore
-  let plant
+  let user = 'Benjamin Bowers'
+  let plant = 'New Holland'
+  let role = 'Admin'
   let msg
-
   $: checkdowntime(downtime)
   function checkdowntime(x) {
     if(!x) {
@@ -18,20 +19,48 @@
     }
   }
   let canSubmit = true
-  
+  async function submit() {
+    dispatch('submit', {
+
+      data: {
+        department,
+        equipName,
+        team,
+        downtimeMin,
+        downtime,
+        ordered,
+        causingDept,
+        WONum,
+        user,
+        PONum,
+        date,
+        description,
+        status,
+        plant,
+        whys: {
+          why1,
+          why2,
+          why3,
+          why4,
+          why5,
+          whymsg
+        }
+      }
+    });
+  }
 </script>
 
 <main>
-  <form>
+  <form on:submit|preventDefault="{submit}">
     {#if plant == 'New Holland FP'}
-      <select  id="" required class="department">
+      <select bind:value="{department}" id="" required class="department">
         <option value="" disabled hidden selected>-- Select Department --</option>
         <option value="Cookside">Cookside</option>
         <option value="Packside">Pack Side</option>
         <option value="Clean room">Clean Room</option>
       </select>
     {:else}
-      <select  id="" required class="department">
+      <select bind:value="{department}" id="" required class="department">
         <option value="" disabled hidden selected>-- Select Department --</option>
         <option value="Live Receiving">Live Receiving</option>
         <option value="RKP">RKP</option>
@@ -48,9 +77,9 @@
     {/if}
 
 
-    <input  type="text" placeholder="Equipment Name" class="equipment-name" required>
+    <input bind:value="{equipName}" type="text" placeholder="Equipment Name" class="equipment-name" required>
 
-    <select id="" required class="team">
+    <select bind:value={team} id="" required class="team">
       <option value="" disabled hidden selected>-- Select Team --</option>
       <option value="Team-1S">Team-1S</option>
       <option value="Team-2S">Team-2S</option>
@@ -63,18 +92,18 @@
 
     <fieldset class="downtime">
       <label>
-        <input type="checkbox">
+        <input bind:checked="{downtime}" type="checkbox">
         <span>Any Downtime?</span>
       </label>
       
       {#if downtime}
-        <input  type="number" placeholder='Downtime in Minutes' min='0' max='9999' required>
+        <input bind:value="{downtimeMin}" type="number" placeholder='Downtime in Minutes' min='0' max='9999' required>
       {:else}
-        <input  type="number" placeholder='Downtime in Minutes' min='0' max='9999' disabled>
+        <input bind:value="{downtimeMin}" type="number" placeholder='Downtime in Minutes' min='0' max='9999' disabled>
       {/if}
     </fieldset>
 
-    <select  name="" required class="department-causing">
+    <select bind:value="{causingDept}" name="" required class="department-causing">
       <option value="" disabled hidden selected>-- Select Causing Dept --</option>
       <option value="Maintenance">Maintenance</option>
       <option value="Ops Driven">Ops Driven</option>
@@ -84,10 +113,10 @@
     <fieldset class='ordered'>
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <label>
-        {#if ordered}
-          <input type="checkbox" disabled>
+        {#if PONum}
+          <input bind:checked="{ordered}" type="checkbox" disabled>
         {:else}
-          <input type="checkbox">
+          <input bind:checked="{ordered}" type="checkbox">
         {/if}
         <span>Have parts been ordered?</span>
       </label>
@@ -95,23 +124,23 @@
       {#if ordered}
         <div class="ordered-container">
           <fieldset class='PONum'>
-            <input  type="number" placeholder='Work Order Number' min='1000000000' max='9999999999'>
-            <input  type="number" placeholder='Purchase Order Number' min='1000000000' max='9999999999' required>
+            <input bind:value="{WONum}" type="number" placeholder='Work Order Number' min='1000000000' max='9999999999'>
+            <input bind:value="{PONum}" type="number" placeholder='Purchase Order Number' min='1000000000' max='9999999999' required>
           </fieldset>
         </div>
       {:else}
-        <input  type="number" placeholder='Work Order Number' min='1000000000' max='9999999999'>
+        <input bind:value="{WONum}" type="number" placeholder='Work Order Number' min='1000000000' max='9999999999'>
       {/if}
     </fieldset>
       
 
     <div class="datetime">
-      <input  type="date" required>
+      <input bind:value="{date}" type="date" required>
     </div>  
 
-    <textarea  id="description" placeholder="Description of Job/Repair" required />
+    <textarea bind:value="{description}" id="description" placeholder="Description of Job/Repair" required />
 
-    <select  id="status" required>
+    <select bind:value="{status}" id="status" required>
       <option value="" disabled hidden selected>-- Select Status --</option>
       <option value="Complete">Complete</option>
       <option value="In Progress">In Progress</option>
@@ -123,29 +152,37 @@
         <h2>All Logs with over 30mins of downtime must explain 5 reasons why</h2>
         <div class="inputs">
           <label>Why 1:
-            <textarea  required></textarea>
+            <textarea bind:value="{why1}" required></textarea>
           </label>
           <label>Why 2:
-            <textarea  required></textarea>
+            <textarea bind:value="{why2}" required></textarea>
           </label>
           <label>Why 3:
-            <textarea  required></textarea>
+            <textarea bind:value="{why3}" required></textarea>
           </label>
           <label>Why 4:
-            <textarea  required></textarea>
+            <textarea bind:value="{why4}" required></textarea>
           </label>
           <label>Why 5: 
-            <textarea  required></textarea>
+            <textarea bind:value="{why5}" required></textarea>
           </label>
   
           <label >Team Member Responsible:
-            <textarea  required></textarea>
+            <textarea required></textarea>
           </label>
           <label id="correctiveAction">Corrective Action:
-            <textarea  required></textarea>
+            <textarea required></textarea>
           </label>
         </div>
       </div>
+    {/if}
+
+    {#if whymsg}
+      <p>{whymsg}</p>
+    {/if}
+
+    {#if msg}
+      <p>{msg}</p>
     {/if}
 
     {#if canSubmit}
@@ -161,7 +198,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Nuosu+SIL&family=Roboto&display=swap" rel="stylesheet">
 </svelte:head>
-
 <style>
 
   

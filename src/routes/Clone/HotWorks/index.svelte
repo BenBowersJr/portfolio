@@ -1,5 +1,5 @@
 <script>
-  import HotWorkPermit from "$lib/components/HotWorkPermit.svelte";
+  import HotWorkPermit from "$lib/components/TysonCopy/HotWorkPermit/HotWorkPermit.svelte";
 </script>
 
 <svelte:head>
@@ -16,14 +16,14 @@
 
 <style>
   main {
-    margin-top: 19px;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     /* overflow-y: auto; */
     /* margin-bottom: 100px; */
-
+    background-color: whitesmoke;
+    color: black;
   }
 
   h1 {

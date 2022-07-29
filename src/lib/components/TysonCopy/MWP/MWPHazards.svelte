@@ -14,27 +14,19 @@
 </script> -->
 
 <script>
-  // @ts-ignore
-  import {session, page} from '$app/stores'
-  import {get} from 'svelte/store'
   import {onMount} from 'svelte'
-  import MwpHazards2 from '$lib/components/MWP_Hazards2.svelte'
-  
-  let sessionData = get(session)
-  let id = $page.params.id
+  import MwpHazards2 from '$lib/components/TysonCopy/MWP/MWP_Hazards2.svelte'
+
   export let risklvl = 'low'
   export let updateData
 
-
-  let useremail = sessionData.user.email
-  let initals = useremail[0] + useremail[useremail.indexOf('.')+1]
-  initals = initals.toUpperCase()
+  let initals = 'BB', updating, waitingForEmail, emailmsg, canSubmit
   
   // header Data
   let equipment, area, date, WONum = '', risk=risklvl, receivedTime, startTime, endTime, returnTime, productionCheckbox
   
   // textbox Data
-  let workInstructions, workPerformed, maintenanceManager, productionManager, teamMember = sessionData.user.username, otherTeamMember
+  let workInstructions, workPerformed, maintenanceManager, productionManager,teamMember, otherTeamMember
   $: maintenanceManager, productionManager
   
   // Mitigation Data
@@ -50,256 +42,20 @@
   let gettingSignature = false
   let selectedSuper, selectedTeamMember, personellNum, signatureType, msg
   let maintenanceManagerlvl, productionManagerlvl
-  function submitSignature() {
-    msg = ''
-    if (selectedSuper) {
-      if (selectedSuper.personellNum == personellNum) {
-        if (signatureType == 'maintenance' && (selectedSuper.username != productionManager && selectedSuper.username != teamMember && selectedSuper.username != otherTeamMember)) {
-          maintenanceManager = selectedSuper.username
-          maintenanceManagerlvl = selectedSuper.role
-        } else if (signatureType == 'production' && (selectedSuper.username != maintenanceManager && selectedSuper.username != teamMember && selectedSuper.username != otherTeamMember)) {
-          productionManager = selectedSuper.username
-          productionManagerlvl = selectedSuper.role
-        } else if (signatureType == 'otherteam' && (selectedSuper.username != teamMember && selectedSuper.username != maintenanceManager && selectedSuper.username != productionManager)) {
-          otherTeamMember = selectedSuper.username
-        } else {
-          msg = "Same user cannot sign multiple fields"
-          personellNum = undefined
-          return
-        }
-  
-        selectedSuper = undefined
-        personellNum = undefined
-        signatureType = undefined
-        gettingSignature = false
-        msg = ''
-      } else {
-        msg = "Personell # does not match"
-        personellNum = undefined
-      }
-    }
 
-    if (selectedTeamMember) {
-      if (selectedTeamMember.personellNum == personellNum) {
-        otherTeamMember = selectedTeamMember.username
-        personellNum = undefined
-        signatureType = undefined
-        gettingSignature = false
-        msg = ''
-      } else {
-        msg = 'Personell # does not Match'
-        personellNum = undefined
-      }
-
-    }
-  }
 
   //if this is data from the route update MWP values with that data, also changes the state 
-  let updating
-  if (updateData) {
-    updating = true
 
-    equipment = updateData.equipment || ''
-    area = updateData.area || ''
-    date = updateData.date || ''
-    WONum = updateData.WONum || ''
-    risk = updateData.risk || ''
-    receivedTime = updateData.receivedTime || ''
-    startTime = updateData.startTime || ''
-    endTime = updateData.endTime || ''
-    returnTime = updateData.returnTime || ''
-    productionCheckbox = updateData.productionCheckbox || false
-    workInstructions = updateData.workInstructions || ''
-    workPerformed = updateData.workPerformed || ''
-    maintenanceManager = updateData.maintenanceManager || ''
-    productionManager = updateData.productionManager || ''
-    teamMember = updateData.teamMember || ''
-    otherTeamMember = updateData.otherTeamMember || ''
-    mitigation0 = updateData.mitigation0 || ''
-    mitigation1 = updateData.mitigation1 || ''
-    mitigation2 = updateData.mitigation2 || ''
-    mitigation3 = updateData.mitigation3 || ''
-    mitigation4 = updateData.mitigation4 || ''
-    mitigation5 = updateData.mitigation5 || ''
-    mitigation6 = updateData.mitigation6 || ''
-    mitigation7 = updateData.mitigation7 || ''
-    mitigation8 = updateData.mitigation8 || ''
-    mitigation9 = updateData.mitigation9 || ''
-    if (updateData.selectedHazards) {
-      updateData.selectedHazards.forEach(el => {
-        selectedHazards.push({id: el.id, value: el.value})
-      });
-    }
-    additionalOne = updateData.additionalOne || ''
-    additionalTwo = updateData.additionalTwo || ''
-    conditionChange = updateData.conditionChange || ''
-    areaCondition = updateData.areaCondition || ''
-    safetyBrief = updateData.safetyBrief || ''
-    authorizer = updateData.authorizer || ''
-  }
 
   //gets supervisors from faunaDB
   let supervisors
   let allTeamMembers
-  onMount(async()=> {
-    const req = await fetch('/forms/MWP.json', {method: 'POST', body: JSON.stringify({get: 'leads', plant: sessionData.user.plant})})
-    const req2 = await fetch('/forms/MWP.json', {method: 'POST', body: JSON.stringify({get: 'team', plant: sessionData.user.plant})})
-    supervisors = await req.json()
-    allTeamMembers = await req2.json()
-  })
-  
-  let canSubmit = false
-  $: checkSubmit(maintenanceManager, productionManager, teamMember, otherTeamMember,  authorizer, risk, productionCheckbox, selectedHazards)
-  function checkSubmit(maintenanceManager, productionManager, teamMember, otherTeamMember, authorier, risk, production, selectedHazards) {
-    if (risk == 'low') {
-      // if production checkbox is selected
-      if (production) {
-        if ((teamMember && productionManager) || (teamMember && otherTeamMember) || (teamMember && otherTeamMember && productionManager)) {
-          canSubmit = true
-        } else {
-          canSubmit = false
-        }
-        return
-      } else {
-        // just checks if team member and other team member signed
-        if (teamMember || (teamMember && otherTeamMember)) {
-          canSubmit = true
-        } else {
-          canSubmit = false
-        }
-      }
-    }
 
-    if (risk == 'medium') {
-      if (production) {
-        if (productionManager && otherTeamMember && maintenanceManager) {
-          canSubmit = true
-        } else {
-          canSubmit = false;
-        }
-      } else {
-        if (otherTeamMember && maintenanceManager) {
-          canSubmit  = true
-        } else {
-          canSubmit = false
-        }
-      }
-    }
-
-    if (risk == 'high') {
-      if (production) {
-        if (maintenanceManager && otherTeamMember && authorier && productionManager) {
-          canSubmit = true
-        } else {
-          canSubmit = false
-        }
-      } else {
-        if (maintenanceManager && otherTeamMember && authorier) {
-          canSubmit = true
-        } else {
-          canSubmit = false
-        }
-      }
-    }
-
-    if (selectedHazards.length == 0) {
-      canSubmit = false
-    }
-  }
-
-  let waitingForEmail = false, emailmsg
-  async function submitMWP() {
-    if (!updating) {
-      waitingForEmail = true
-      const req = await fetch('../.netlify/functions/makepdf', {
-      method: 'POST',
-      body: JSON.stringify({
-        equipment,
-        area,
-        date,
-        WONum,
-        risk,
-        receivedTime,
-        startTime,
-        endTime,
-        returnTime,
-        productionCheckbox,
-        workInstructions,
-        workPerformed,
-        maintenanceManager,
-        productionManager,
-        teamMember,
-        otherTeamMember,
-        mitigation0, mitigation1, mitigation2, mitigation3, mitigation4, 
-        mitigation5, mitigation6, mitigation7, mitigation8, mitigation9,
-        selectedHazards,
-        additionalOne,
-        additionalTwo,
-        conditionChange,
-        areaCondition,
-        safetyBrief,
-        authorizer,
-        initals,
-        email: sessionData.user.email,
-        plant: sessionData.user.plant,
-        status: 'In Progress',
-        id: id
-        })
-      })
-      const res = await req.json()
-      emailmsg = res.pdf
-      waitingForEmail = false
-    } else {
-      // still have to write updating script
-      waitingForEmail = true
-      const req = await fetch('https://tyson-mms.com/.netlify/functions/makepdf', {
-      method: 'PUT', 
-      body: JSON.stringify({
-        equipment,
-        area,
-        date,
-        WONum,
-        risk,
-        receivedTime,
-        startTime,
-        endTime,
-        returnTime,
-        productionCheckbox,
-        workInstructions,
-        workPerformed,
-        maintenanceManager,
-        productionManager,
-        teamMember,
-        otherTeamMember,
-        mitigation0, mitigation1, mitigation2, mitigation3, mitigation4, 
-        mitigation5, mitigation6, mitigation7, mitigation8, mitigation9,
-        selectedHazards,
-        additionalOne,
-        additionalTwo,
-        conditionChange,
-        areaCondition,
-        safetyBrief,
-        authorizer,
-        initals,
-        email: sessionData.user.email,
-        plant: sessionData.user.plant,
-        status: 'Complete',
-        id: id
-        })
-      })
-      const res = await req.json()
-      emailmsg = res.pdf
-      waitingForEmail = false
-
-      await new Promise(r => setTimeout(r, 2000));
-      location.replace('/forms/MWP')
-    }
-  }
 
 </script>
 
 <main>
-  <form on:submit|preventDefault="{submitMWP}">
+  <form>
     <div class="mainform">
       <!-- Header -->
       <header>

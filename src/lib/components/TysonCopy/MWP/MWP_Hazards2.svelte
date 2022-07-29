@@ -2,10 +2,6 @@
   import {createEventDispatcher} from 'svelte'
   import {onMount} from 'svelte'
   // @ts-ignore
-  import {session} from '$app/stores'
-  import {get} from 'svelte/store'
-
-  let sessionData = get(session)
 
 
   
@@ -14,56 +10,9 @@
 
   export let maintenanceManagerlvl, productionManagerlvl, maintenanceManager, productionManager, teamMember
   let selectedSuper, personellNum, msg
-  function submitSignature() {
-    msg = ''
+  
 
-    //determies if a supervisor is needed
-    let requireSupervisor = false
-    if (maintenanceManagerlvl == 'Lead' || productionManagerlvl == 'Lead') {
-      requireSupervisor = true
-    }
-    //determies if a manager is needed
-    let requireManager = false
-    if (maintenanceManagerlvl == 'Supervisor' || productionManagerlvl == 'Supervisor') {
-      requireSupervisor = false
-      requireManager = true
-    }
 
-    if (selectedSuper.personellNum == personellNum) {
-      // if authorier signed page one
-      if (selectedSuper.username == maintenanceManager || selectedSuper.username == productionManager || selectedSuper.username == teamMember) {
-        msg = 'Cant use same Signatures from Page 1'
-        return
-      }
-      // if supervisor is required and user is not a supervisor
-      if (requireSupervisor && selectedSuper.role != 'Supervisor') {
-        msg = 'Permit started with Lead, Must have Supervisor Authorize'
-        return
-      }
-      // if Manager is required and user is not a Manager
-      if (requireManager && selectedSuper.role != 'Manager') {
-        msg = 'Permit started with Supervisor, Must have Manager Authorize'
-        return
-      }
-
-      
-      authorizer = selectedSuper.username
-      selectedSuper = undefined
-      personellNum = undefined
-      gettingSignature = false
-    } else {
-      msg = "Personell # does not match"
-      personellNum = undefined
-    }
-  }
-
-  //gets supervisors from faunaDB
-  let supervisors
-  onMount(async()=> {
-    const req = await fetch('/forms/MWP.json', {method: 'POST', body: JSON.stringify({get: 'managers & supervisors', plant: sessionData.user.plant})})
-    supervisors = await req.json()
-    // console.log(supervisors)
-  })
 </script>
 
 <main>

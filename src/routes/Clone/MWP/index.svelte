@@ -15,7 +15,7 @@
 </script> -->
 
 <script>
-  import MWP_Home from '$lib/components/MWP_Home.svelte'
+  import MWP_Home from '$lib/components/TysonCopy/MWP/MWP_Home.svelte'
   
 
 </script>
@@ -41,7 +41,8 @@
   body {
     width: 100%;
     height: 100%;
-
+    background-color: whitesmoke;
+    color: black;
   }
   main {
     display: flex;

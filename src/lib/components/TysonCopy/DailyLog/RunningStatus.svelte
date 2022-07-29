@@ -8,7 +8,7 @@
   // export let data
   let mountData, tableData, searchCol = {id: 0, term: "Department"}
   let searchBy = ''
-  let pageAfter, pageBefore
+
   onMount(async ()=> {
     const req = await fetch('feed.json', {
       method: 'POST',
@@ -17,7 +17,7 @@
     const res = await req.json()
 
     mountData = res
-    pageAfter = mountData.after
+    mountData.data.reverse()
   })
 
   $: search(searchBy, searchCol)
@@ -44,41 +44,15 @@
       }
     }
   }
-
-  async function nextPage() {
-    const req = await fetch('feed.json', {
-      method: 'POST',
-      body: JSON.stringify({onMount: false, plant: plant, after: pageAfter })
-    })
-    const res = await req.json()
-
-    mountData = res
-    pageBefore = res.before
-    pageAfter = res.after
-  }
-  
-  async function lastPage() {
-    const req = await fetch('feed.json', {
-      method: 'POST',
-      body: JSON.stringify({onMount: false, plant: plant, before: pageBefore })
-    })
-    const res = await req.json()
-
-    mountData = res
-    pageBefore = res.before
-    pageAfter = res.after
-  }
 </script>
 
 <main>
-  <h1>Daily Log Feed</h1>
+  <h1>Search DailyLogs</h1>
+  <p class='small'><small>Logs shown are "Not Complete", "In Progress", and "Parts Ordered" </small></p>
+  
 
   <div class="search">
-    {#if pageBefore}
-      <button on:click="{lastPage}">Page Back</button>
-      {:else}
-      <button on:click="{lastPage}" disabled>Page Back</button>
-    {/if}
+    <!-- <button>Page Back</button> -->
     <label>Search Column: 
       <select bind:value="{searchCol}">
         <option selected value="{{ id: 0, term: "Department" }}">Department</option>
@@ -94,15 +68,10 @@
         <option value="{{ id: 10, term: "Description" }}">Description</option>
         <option value="{{ id: 11, term: "Status" }}">Status</option>
         <option value="{{ id: 12, term: "User" }}">User</option>
-        <option value="{{ id: 13, term: "Whys" }}">Whys</option>
       </select>
-      <label>Search {searchCol.term}: <input bind:value="{searchBy}" type="text"></label>
     </label>
-    {#if pageAfter}
-      <button on:click="{nextPage}">Page Forward</button>
-      {:else}
-      <button disabled on:click="{nextPage}">Page Forward</button>
-    {/if}
+    <label>Search {searchCol.term}: <input bind:value="{searchBy}" type="text"></label>
+    <!-- <button>Page Forward</button> -->
   </div>
 
 
@@ -132,7 +101,7 @@
         <th>DT</th>
         <th>DT Mins</th>
         <th>Causing Dept</th>
-        <th>Ordered?</th>
+        <th>ordered</th>
         <th>WO Num</th>
         <th>PO Num</th>
         <th>Date</th>
@@ -158,37 +127,9 @@
             <td>{mdl.data.PONum}</td>
             <td>{mdl.data.date['@date']}</td>
             <td>{mdl.data.description}</td>
-            {#if mdl.data.status == 'Complete'}
-              <td><p style="color: green; font-weight: bold;">{mdl.data.status}</p></td>
-              {:else if mdl.data.status == 'In Progress'}
-              <td><p style="color: orange; font-weight: bold;">{mdl.data.status}</p></td>
-              {:else if mdl.data.status == 'Not Complete'}
-              <td><p style="color: red; font-weight: bold;">{mdl.data.status}</p></td>
-            {/if}
+            <td>{mdl.data.status}</td>
             <td>{mdl.data.user}</td>
-            {#if Array.isArray(mdl.data.whys)}
-              {#if mdl.data.whys.length == 0}
-                <td></td>
-              {:else}
-                <td class="whys">
-                  <p><em>Why 1: </em> {mdl.data.whys[0]}</p>
-                  <p><em>Why 2: </em> {mdl.data.whys[1]}</p>
-                  <p><em>Why 3: </em> {mdl.data.whys[2]}</p>
-                  <p><em>Why 4: </em> {mdl.data.whys[3]}</p>
-                  <p><em>Why 5: </em> {mdl.data.whys[4]}</p>
-                </td>
-              {/if}
-            {:else if !Array.isArray(mdl.data.whys)}
-              <td class="whys">
-                <p><em>Why 1:</em> {mdl.data.whys.why1}</p>
-                <p><em>Why 2:</em> {mdl.data.whys.why2}</p>
-                <p><em>Why 3:</em> {mdl.data.whys.why3}</p>
-                <p><em>Why 4:</em> {mdl.data.whys.why4}</p>
-                <p><em>Why 5:</em> {mdl.data.whys.why5}</p>
-                <p><em>TM:</em> {mdl.data.whys.userResponsible}</p>
-                <p><em>CA:</em> {mdl.data.whys.correctiveAction}</p>
-              </td>
-            {/if}
+            <td>{mdl.data.whys}</td>
           </tr>
         {/each}
       </tbody>
@@ -213,9 +154,13 @@
   th {
     font-weight: bolder;
     font-size: 1.1em;
+    text-decoration: underline;
     height: 2.5em;
     background-color: lightyellow;
     color: black;
+  }
+  table, th, td {
+    border: 1px solid black;
   }
   td {
     padding: 5px;
@@ -226,10 +171,22 @@
   tbody tr:nth-child(even) {
     background-color: lightgray;
   }
+
+
+
+
+
+
+
+
+
+
+
+
   
   
   table, th, td {
-    border: 2px solid black;
+    border: 1px solid;
     padding: 5px;
   }
   main {
@@ -268,11 +225,11 @@
   .search {
     text-align: center;
     padding: 10px;
-    border-left: 2px solid #000;
-    border-right: 2px solid #000;
-    border-top: 2px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
 
@@ -280,23 +237,6 @@
     margin: 0px 20px;
   }
 
-  .search button {
-    padding: 7px;
-    margin: 0 50px;
-  }
-
-  em {
-    font-style: normal;
-    font-weight: bold;
-  }
-
-  .whys p {
-    /* overflow: auto; */
-    margin-bottom: 5px;
-  }
   
-  .description p {
-    height: 50px;
-    overflow: auto;
-  }
+  
 </style>
