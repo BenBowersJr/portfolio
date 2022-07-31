@@ -21,7 +21,7 @@ let key = process.env.DISCORD_KEY
 // );
 // const client = new Client({ intents: myIntents });
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-client.login(key);
+// client.login(key);
 
 client.on('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -45,6 +45,7 @@ export const webSocketServer = {
   name: 'webSocketServer',
   configureServer(server) {
     const io = new Server(server.httpServer)
+    client.login(key);
 
     io.on('connection', (socket) => {
       console.log('Connected With Client')
