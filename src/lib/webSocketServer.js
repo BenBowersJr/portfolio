@@ -1,7 +1,10 @@
 // @ts-nocheck
 import { Server } from "socket.io";
 import { GatewayIntentBits, Client } from 'discord.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
+let key = process.env.DISCORD_KEY
 // const myIntents = new IntentsBitField();
 // myIntents.add(
 //   IntentsBitField.Flags.GuildPresences, 
@@ -18,7 +21,7 @@ import { GatewayIntentBits, Client } from 'discord.js'
 // );
 // const client = new Client({ intents: myIntents });
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-client.login('ODU0NDIyOTQzODk5NzEzNTQ2.GH7r6G.kcOEoPa0envvk1l9zJzFQBgY7Og-c-C1lbAP2g');
+client.login(key);
 
 client.on('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
