@@ -11,6 +11,10 @@
     console.log('msg from discord', data)
   })
 
+  socket.on('eventFromServer', (data) => {
+    console.log('Hello World')
+  })
+
   function test() {
     socket.emit('Send Discord Message', msg, (response) => {
       console.log(response)

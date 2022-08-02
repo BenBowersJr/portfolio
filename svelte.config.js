@@ -3,7 +3,7 @@ import { webSocketServer } from './src/lib/webSocketServer.js';
 
 const config = {
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({out: 'build'}),
     vite: {
       plugins: [webSocketServer],
     },

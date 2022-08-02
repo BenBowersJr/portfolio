@@ -167,4 +167,16 @@
     content: "|";
   }
 
+  /* media query if phone size */
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 3em;
+    }
+    small {
+      font-size: 1em;
+    }
+    button {
+      width: 100px;
+    }
+  }
 </style>

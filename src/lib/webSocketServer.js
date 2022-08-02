@@ -4,6 +4,7 @@ import { GatewayIntentBits, Client } from 'discord.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
+
 let key = process.env.DISCORD_KEY
 // const myIntents = new IntentsBitField();
 // myIntents.add(
@@ -21,7 +22,8 @@ let key = process.env.DISCORD_KEY
 // );
 // const client = new Client({ intents: myIntents });
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-// client.login(key);
+client.login(key);
+
 
 client.on('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -44,18 +46,19 @@ client.on('ready', async () => {
 export const webSocketServer = {
   name: 'webSocketServer',
   configureServer(server) {
+    console.log('Launching WebSocket Server');
     const io = new Server(server.httpServer)
-    client.login(key);
 
     io.on('connection', (socket) => {
       console.log('Connected With Client')
       socket.emit('connected', 'Hello, Your Connected to my WebSocket 👋')
+      let personalServer = client.channels.cache.get('1003802710623137973');
+      // let castingCouch = client.channels.cache.get('730956755768705078');
       
-      socket.on('Send Discord Message', async (arg, callback) => {
-        let channel = client.channels.cache.get('730956755768705078')
-        channel.send(arg)
-        // console.log(arg);
-        // callback('Hello from the server');
+      socket.on('sendDiscordMessage', async (arg, callback) => {
+        let msg = '<@272169999995764738> Message From Portfolio!\n\n' + arg
+        await personalServer.send(msg)
+        callback('Message Sent!')
       });
     })
   }
